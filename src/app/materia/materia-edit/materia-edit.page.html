@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/materia-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ esEdicion ? 'Editar' : 'Nueva' }} Materia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="materiaForm" (ngSubmit)="guardar()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Semestre</ion-label>
+        <ion-select formControlName="semestre">
+          <ion-select-option *ngFor="let semestre of semestres" [value]="semestre">
+            {{ semestre }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Carrera</ion-label>
+        <ion-select formControlName="carrera">
+          <ion-select-option *ngFor="let carrera of carreras" [value]="carrera">
+            {{ carrera }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Profesor</ion-label>
+        <ion-select [(ngModel)]="profesorSeleccionado" formControlName="profesor">
+          <ion-select-option *ngFor="let profesor of profesores" [value]="profesor.id">
+            {{ profesor.nombre }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" [disabled]="!materiaForm.valid">
+        Guardar
+      </ion-button>
+      <ion-button expand="block" color="medium" (click)="cancelar()">
+        Cancelar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

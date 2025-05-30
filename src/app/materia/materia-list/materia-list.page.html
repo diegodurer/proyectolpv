@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Materias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="header-color">
+      <ion-col>Nombre</ion-col>
+      <ion-col>Semestre</ion-col>
+      <ion-col>Carrera</ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let materia of listaMaterias">
+      <ion-item-sliding>
+        <ion-item [routerLink]="['/home/materia-edit/' + materia.id]">
+          <ion-col>{{ materia.nombre }}</ion-col>
+          <ion-col>{{ materia.semestre }}</ion-col>
+          <ion-col>{{ materia.carrera }}</ion-col>
+          <ion-col>{{ materia.profesor }}</ion-col>
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="success" (click)="editarMateria(materia.id ?? '')">
+            <ion-icon name="create"></ion-icon>
+            Editar
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="eliminarMateriaConfirmacion(materia.id ?? '')">
+            <ion-icon name="trash"></ion-icon>
+            Eliminar
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="nuevo()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Alumno</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>CI</ion-label>
+            <ion-input [(ngModel)]="alumno.codigo">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Nombre</ion-label>
+            <ion-input [(ngModel)]="alumno.nombre">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Apellido</ion-label>
+            <ion-input [(ngModel)]="alumno.apellido">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <img [src]="avatar" alt="">
+          </ion-item>
+          <ion-item>
+            <label for="fileUpload">Seleccionar</label>
+            <input id="fileUpload" type="file" #upload accept=".png,.jpg" >
+            <button (click)="uploadFile(upload)">Upload</button>
+        </ion-item>
+     
+       
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      
+      <ion-fab-button (click)="accion(alumno.id)">
+        <ion-icon name="save"></ion-icon>
+      </ion-fab-button>
+   
+    </ion-fab>
+</ion-content>
